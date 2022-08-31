@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,  } from "react";
 import ToDoItem from "./ToDoItem";
 import InputArea from "./InputArea";
 import useWindowSize from "../utils/useWindowSize";
+import axios from "axios";
 
 function App() {
   const [inputText, setInputText] = useState("");
@@ -20,11 +21,23 @@ function App() {
     setInputText("");
   }
 
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/")
+    .then(res => {
+      setItems(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  })
+
+
   function deleteItem(id) {
+    axios.delete(`http://localhost:3000/${id}`)
+      .then(res => console.log(res.data));
     setItems((prevItems) => {
-      return prevItems.filter((item, index) => {
-        return index !== id;
-      });
+      return prevItems.filter(todolist => todolist._id !== id);
     });
   }
 
@@ -38,11 +51,11 @@ function App() {
           <InputArea change={handleChange} click={addItem} text={inputText} />
           <div>
             <ul>
-              {items.map((todoItem, index) => (
+              {items.map((todolist) => (
                 <ToDoItem
-                  key={index}
-                  id={index}
-                  text={todoItem}
+                  key={todolist._id}
+                  id={todolist._id}
+                  text={todolist.text}
                   onChecked={deleteItem}
                 />
               ))}
