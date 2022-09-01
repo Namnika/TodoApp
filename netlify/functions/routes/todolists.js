@@ -7,7 +7,7 @@ router.use(bodyParser.urlencoded({extended: true}));
 router.route("/").get((req, res) => {
   TodoList.find()
   .then(todos => res.json(todos))
-  .catch(err => {res.status(400).json("Error:" + err)});
+  .catch(err => res.status(400).json("Error: " + err));
 });
 
 router.route("/").post((req, res) => {

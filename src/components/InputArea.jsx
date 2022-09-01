@@ -4,7 +4,9 @@ import qs from "qs";
 
 
 function InputArea(props) {
-  const [inputText, setInputText] = useState([]);
+  const [inputText, setInputText] = useState({
+    text: "",
+  });
 
   function handleChange(event) {
     const newValue = event.target.value;
@@ -12,25 +14,33 @@ function InputArea(props) {
     console.log(newValue);
   }
 
+  console.log(inputText);
+
+
   function submitTodo(event){
     console.log(inputText);
 
-    const data = qs.stringify({text: inputText});
+    const data = qs.stringify({
+      text: inputText.text
+    });
+
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     }
 
     axios.post("http://localhost:3000/", data, headers)
-    .then(res => console.log(res));
+    .then(res => console.log(res.data));
 
-    setInputText("");
+    setInputText({
+      text: ""
+    });
     event.preventDefault();
   }
 
 
   return (
     <div className="form">
-      <input onChange={handleChange} type="text" value={inputText.text} />
+      <input onChange={handleChange} name="text" value={inputText.text} />
       <button onClick={submitTodo}>
         <span>Add</span>
       </button>

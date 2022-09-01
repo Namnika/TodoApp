@@ -13,15 +13,16 @@ function App() {
     setItems(prevItems => {
       return [...prevItems, newInputText];
     });
+    console.log(newInputText);
   }
 
-
+console.log(items);
   useEffect(() => {
     axios.get("http://localhost:3000/")
     .then(res => {
       setItems(res.data);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
     })
   })
@@ -31,9 +32,8 @@ function App() {
     axios.delete(`http://localhost:3000/${id}`)
       .then(res => console.log(res.data));
     setItems((prevItems) => {
-      return prevItems.filter(todolist => todolist._id !== id);
+      return prevItems.filter(inputText => inputText._id !== id);
     });
-
   }
 
   return (
@@ -46,16 +46,17 @@ function App() {
           <InputArea click={addItem} />
           <div>
             <ul>
-              {items.map((todolist) => {
+              {items.map((inputText) => {
                 return (
                 <ToDoItem
-                  key={todolist._id}
-                  _id={todolist._id}
-                  text={todolist.text}
+                  key={inputText._id}
+                  _id={inputText._id}
+                  text={inputText.text}
                   onChecked={deleteItem}
                 />
               );
-            })}
+            })
+          }
             </ul>
           </div>
         </div>
