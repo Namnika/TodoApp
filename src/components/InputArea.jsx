@@ -15,8 +15,8 @@ function InputArea(props) {
   function submitTodo(event){
     console.log(inputText);
 
-    const data = qs.stringify({text: inputText.text});
-    axios.post("http://localhost:3000/", data)
+    const data = qs.stringify({text: inputText});
+    axios.post("http://localhost:3000", data)
     .then(res => console.log(res.data));
 
     setInputText({text: ""});
