@@ -7,10 +7,8 @@ const port = process.env.PORT;
 const app = express();
 
 mongoose.connect(process.env.MONGODB_URI)
-.then(() => app.listen(port, () => console.log("Server is running on port 5000");
+.then(() => app.listen(port, () => console.log("Server is running on port 5000")))
 .catch((err) => console.log(err.message));
-));
-
 
 const connection = mongoose.connection;
 connection.once("open", () => {

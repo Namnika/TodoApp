@@ -1,4 +1,4 @@
-import React, { useState,  } from "react";
+import React, { useState, useEffect } from "react";
 import ToDoItem from "./ToDoItem";
 import InputArea from "./InputArea";
 import useWindowSize from "../utils/useWindowSize";

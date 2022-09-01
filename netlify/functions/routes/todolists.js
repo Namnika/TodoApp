@@ -1,5 +1,5 @@
-const router = require("express");
-const body-parser = require("body-parser");
+const router = require("express").Router();
+const bodyParser = require("body-parser");
 let Todolist = require("../models/todolist.model");
 
 router.use(bodyParser.urlencoded({extended: true}));
@@ -16,15 +16,15 @@ router.route("/").post((req, res) => {
   });
 
   newTodo.save()
-  .then(() => res.send("Todolist Item added!!"));
+  .then(() => res.send("Todolist Item added!!"))
   .catch(err => res.status(400).json("Error: " + err));
 });
 
 router.route("/:id")
   .delete((req, res) => {
     Todolist.findByIdAndDelete(req.params.id)
-    .then(() => {"Todolist Item deleted!!"});
-    .catch(err => {res.status(400).json("Error: " + err)});
+    .then(() => {"Todolist Item deleted!!"})
+    .catch(err => res.status(400).json("Error: " + err));
   });
 
 module.exports = router;
