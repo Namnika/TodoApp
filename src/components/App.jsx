@@ -5,20 +5,15 @@ import useWindowSize from "../utils/useWindowSize";
 import axios from "axios";
 
 function App() {
-  const [inputText, setInputText] = useState("");
+
   const [items, setItems] = useState([]);
   const { width } = useWindowSize();
 
-  function handleChange(event) {
-    const newValue = event.target.value;
-    setInputText(newValue);
-  }
 
-  function addItem() {
+  function addItem(inputText) {
     setItems((prevItems) => {
       return [...prevItems, inputText];
     });
-    setInputText("");
   }
 
 
@@ -39,6 +34,7 @@ function App() {
     setItems((prevItems) => {
       return prevItems.filter(todolist => todolist._id !== id);
     });
+
   }
 
   return (
@@ -48,7 +44,7 @@ function App() {
           <div className="heading">
             <h1>To-Do List</h1>
           </div>
-          <InputArea change={handleChange} click={addItem} text={inputText} />
+          <InputArea click={addItem} />
           <div>
             <ul>
               {items.map((todolist) => (
