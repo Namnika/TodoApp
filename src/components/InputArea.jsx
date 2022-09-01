@@ -15,9 +15,13 @@ function InputArea(props) {
   function submitTodo(event){
     console.log(inputText);
 
-    const data = qs.stringify({text: inputText});
-    axios.post("http://localhost:3000", data)
-    .then(res => console.log(res.data));
+    const data = qs.stringify({text: inputText.text});
+    const headers = {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+    }
+
+    axios.post("http://localhost:3000/", data, headers)
+    .then(res => console.log(res));
 
     setInputText({text: ""});
     event.preventDefault();
