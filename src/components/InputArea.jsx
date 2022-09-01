@@ -4,7 +4,7 @@ import qs from "qs";
 
 
 function InputArea(props) {
-  const [inputText, setInputText] = useState({text: ""});
+  const [inputText, setInputText] = useState([]);
 
   function handleChange(event) {
     const newValue = event.target.value;
@@ -15,7 +15,7 @@ function InputArea(props) {
   function submitTodo(event){
     console.log(inputText);
 
-    const data = qs.stringify({text: inputText.text});
+    const data = qs.stringify({text: inputText});
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     }
@@ -23,7 +23,7 @@ function InputArea(props) {
     axios.post("http://localhost:3000/", data, headers)
     .then(res => console.log(res));
 
-    setInputText({text: ""});
+    setInputText("");
     event.preventDefault();
   }
 

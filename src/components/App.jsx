@@ -9,10 +9,9 @@ function App() {
   const [items, setItems] = useState([]);
   const { width } = useWindowSize();
 
-
-  function addItem(inputText) {
-    setItems((prevItems) => {
-      return [...prevItems, inputText];
+  function addItem(newInputText) {
+    setItems(prevItems => {
+      return [...prevItems, newInputText];
     });
   }
 
@@ -47,14 +46,16 @@ function App() {
           <InputArea click={addItem} />
           <div>
             <ul>
-              {items.map((todolist) => (
+              {items.map((todolist) => {
+                return (
                 <ToDoItem
                   key={todolist._id}
-                  id={todolist._id}
+                  _id={todolist._id}
                   text={todolist.text}
                   onChecked={deleteItem}
                 />
-              ))}
+              );
+            })}
             </ul>
           </div>
         </div>
