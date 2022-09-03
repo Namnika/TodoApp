@@ -6,7 +6,7 @@ router.use(bodyParser.urlencoded({extended: true}));
 
 router.route("/").get((req, res) => {
   TodoList.find()
-  .then(todos => res.json(todos))
+  .then(items => res.json(items))
   .catch(err => res.status(400).json("Error: " + err));
 });
 
@@ -22,8 +22,7 @@ router.route("/").post((req, res) => {
 
 router.route("/:id")
   .delete((req, res) => {
-    TodoList.findByIdAndDelete(req.params.id)
-    .then(() => res.send("TodoList Item deleted!!"))
+    TodoList.findByIdAndDelete(req.params.id).then(() => res.send("TodoList Item deleted!!"))
     .catch(err => res.status(400).json("Error: " + err));
   });
 

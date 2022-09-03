@@ -1,10 +1,16 @@
 import React from "react";
 
+
 function ToDoItem(props){
+  function handleClick(){
+    props.onChecked(props.id);
+    console.log(props);
+  }
+
+
   return (
     <div
-      onClick={() => {props.onChecked(props._id);
-        console.log(props)}}>
+      onClick={handleClick}>
       <li>{props.text}</li>
     </div>
   );
