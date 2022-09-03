@@ -26,7 +26,7 @@ function InputArea(props) {
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     }
-    axios.post("http://localhost:5000/", data, headers)
+    axios.post("https://todo-ag6q3omku-namnika.vercel.app/", data, headers)
     .then(res => console.log(res.data));
 
     setInputText({text: ""});

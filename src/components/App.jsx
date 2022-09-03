@@ -4,7 +4,6 @@ import InputArea from "./InputArea";
 import axios from "axios";
 
 
-
 function App() {
   const [items, setItems] = useState([]);
 
@@ -16,7 +15,7 @@ function App() {
   }
 
   useEffect(() => {
-    axios.get("http://localhost:5000/")
+    axios.get("https://todo-ag6q3omku-namnika.vercel.app/")
     .then(res => {
       setItems(res.data);
     })
@@ -27,7 +26,7 @@ function App() {
 
 
   function deleteItem(id) {
-    axios.delete(`http://localhost:5000/${id}`)
+    axios.delete(`https://todo-ag6q3omku-namnika.vercel.app/${id}`)
       .then(res => console.log(res.data));
     setItems((prevItems) => {
       return prevItems.filter(inputText => inputText._id !== id);
