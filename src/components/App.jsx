@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import ToDoItem from "./ToDoItem";
 import InputArea from "./InputArea";
+import QuestionMarkRoundedIcon from '@mui/icons-material/QuestionMarkRounded';
 import useWindowSize from "../utils/useWindowSize";
 import axios from "axios";
+
+
 
 
 
 function App() {
   const [items, setItems] = useState([]);
   const { width } = useWindowSize();
+  const [smShow, setSmShow] = useState(false);
+
 
   function addItem(newInputText) {
     setItems(prevItems => {
@@ -36,11 +41,14 @@ function App() {
 
   return (
     <div>
+
       {width > 700 && (
+
         <div className="container">
           <div className="heading">
             <h1>To-Do List</h1>
           </div>
+          <QuestionMarkRoundedIcon />
           <InputArea onAdd={addItem} />
           <div>
             <ul>
