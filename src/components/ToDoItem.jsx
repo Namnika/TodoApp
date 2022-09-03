@@ -11,7 +11,7 @@ function ToDoItem(props){
   return (
     <div
       onClick={handleClick}>
-      <li>{props.text}</li>
+      <li style={{fontFamily: '"Architects Daughter", cursive'}}>{props.text}</li>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import qs from "qs";
-
+import QuestionMarkRoundedIcon from '@mui/icons-material/QuestionMarkRounded';
+import Tooltip from '@mui/material/Tooltip';
 
 function InputArea(props) {
 
@@ -35,6 +36,9 @@ function InputArea(props) {
 
   return (
     <div className="form">
+    <Tooltip title="Click on item to delete!" arrow>
+    <QuestionMarkRoundedIcon sx={{ fontSize: 13 }} />
+    </Tooltip>
       <input
       name="text"
       onChange={handleChange}

@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from "react";
 import ToDoItem from "./ToDoItem";
 import InputArea from "./InputArea";
-import QuestionMarkRoundedIcon from '@mui/icons-material/QuestionMarkRounded';
-import useWindowSize from "../utils/useWindowSize";
 import axios from "axios";
-
-
 
 
 
 function App() {
   const [items, setItems] = useState([]);
-  const { width } = useWindowSize();
-  const [smShow, setSmShow] = useState(false);
 
 
   function addItem(newInputText) {
@@ -39,36 +33,29 @@ function App() {
       return prevItems.filter(inputText => inputText._id !== id);
   })};
 
+
   return (
-    <div>
-
-      {width > 700 && (
-
-        <div className="container">
-          <div className="heading">
-            <h1>To-Do List</h1>
-          </div>
-          <QuestionMarkRoundedIcon />
-          <InputArea onAdd={addItem} />
-          <div>
-            <ul>
-              {items.map((inputText) => {
-                return (
-                  <ToDoItem
-                  key={inputText._id}
-                  id={inputText._id}
-                  text={inputText.text}
-                  onChecked={deleteItem}
-                />
-              );
-            })
-          }
-            </ul>
-          </div>
+      <div className="container">
+        <div className="heading">
+          <h1 style={{fontFamily: '"Architects Daughter", cursive'}}>To-Do List</h1>
         </div>
-      )}
+        <InputArea onAdd={addItem} />
+        <div>
+          <ul>
+            {items.map((inputText) => {
+              return (
+                <ToDoItem
+                key={inputText._id}
+                id={inputText._id}
+                text={inputText.text}
+                onChecked={deleteItem}
+              />
+            );
+          })
+        }
+      </ul>
     </div>
-  );
-}
+  </div>
+);}
 
 export default App;
